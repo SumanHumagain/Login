@@ -10,7 +10,7 @@ import { AppService } from 'src/app/services/app.service';
 })
 export class LoginComponent {
   ErrorMsg: string ="";
-
+  isValidUser: boolean = false;
   loginForm = this.fb.group({
     username: ['', [Validators.required]],
     password: ['', Validators.required]
@@ -30,8 +30,14 @@ export class LoginComponent {
     const { username, password } = this.loginForm.value;
     this.apiService.login(this.loginForm.value)
       .subscribe(
-        response => {this.ErrorMsg = "User validated"}, // Handle success response
-        error => {this.ErrorMsg = "Login failed!"} // Handle error response
+        response => {
+          this.isValidUser=true;
+          this.ErrorMsg = "User validated successfully"
+        }, // Handle success response
+        error => {
+          this.isValidUser=false;
+          this.ErrorMsg = error.error.message+"!";
+        } // Handle error response
       );
   }
   }

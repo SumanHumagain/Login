@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
@@ -6,12 +6,13 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class AppService {
-  private apiUrl = 'your_api_endpoint';
+  //private apiUrl = 'https://appdemosuman.azurewebsites.net';
+  private apiUrl = 'https://localhost:44376';
   constructor(private http: HttpClient) { }
 
    login(formData: any): Observable<any> {
     debugger;
-    return this.http.post(`${this.apiUrl}/login`, formData);
+    return this.http.post<any>(`${this.apiUrl}/api/auth/Validate`, formData);
   }
 
 }

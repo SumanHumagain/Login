@@ -41,6 +41,6 @@
         [disabled]="loginForm.invalid"
         type="submit"
       ></p-button>
-      <p style="color: red;">{{ErrorMsg}}</p>
+      <p [ngStyle]="{'color': (this.isValidUser) ? 'green' : 'red'}">{{ErrorMsg}}</p>
     </p-card>
   </form>
