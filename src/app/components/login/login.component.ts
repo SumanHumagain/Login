@@ -36,7 +36,7 @@ export class LoginComponent {
         }, // Handle success response
         error => {
           this.isValidUser=false;
-          this.ErrorMsg = error.error.message+"!";
+          this.ErrorMsg = error.error.message == undefined ? "Login failed!" : error.error.message+"!";
         } // Handle error response
       );
   }
